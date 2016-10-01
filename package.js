@@ -34,6 +34,8 @@ Package.registerBuildPlugin({
     'minifier-css',
   ],
   npmDependencies: {
+    'css': '2.2.1',
+    'inherits': '2.0.3',
     'source-map': '0.5.6',
     'postcss': '5.0.21',
     'app-module-path': '1.0.6',
@@ -42,4 +44,16 @@ Package.registerBuildPlugin({
   sources: [
     'plugin/css-minifier.js',
   ],
+});
+
+Package.registerBuildPlugin({
+  name: 'js-minifier',
+  use: [
+    'ecmascript',
+    'minifier-js'
+  ],
+  sources: [
+    'plugin/js-minifier.js',
+    'lib/global-paths.js',
+  ]
 });
