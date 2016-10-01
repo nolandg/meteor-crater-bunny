@@ -16,7 +16,8 @@ export default class InlineStrippedCss extends Component {
     if (Meteor.isServer) {
       css = this.props.appAssets.getText('noland_crash-landing/stripped.css');
     } else {
-      css = $('style.crash-landing').html() + '  ';
+      // css = $('style.crash-landing').html() + 'asfd{asdf:45}';
+      css = '';
     }
     return css;
   }

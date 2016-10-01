@@ -26,7 +26,7 @@ AsyncInlineMinifier.prototype.processFilesForBundle = function (files, options) 
 
   merged = PostCss.mergeCss(filesToMerge);
 
-  if (true || options.minifyMode === 'production') {
+  if (options.minifyMode === 'production') {
     CssStripper.setMergedCss(merged.code);
     CssStripper.generateStrippedCss();
   }
