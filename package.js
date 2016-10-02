@@ -19,8 +19,8 @@ Package.onUse((api) => {
 
 Npm.depends({
   css: '2.2.1',
+  inherits: '2.0.3',
   'fs-extra': '0.8.1',
-  'inherits': '2.0.3',
 })
 
 Package.onTest((api) => {
@@ -48,19 +48,4 @@ Package.registerBuildPlugin({
   sources: [
     'plugin/css-minifier.js',
   ],
-});
-
-Package.registerBuildPlugin({
-  name: 'js-minifier',
-  use: [
-    'ecmascript',
-    'minifier-js'
-  ],
-  npmDependencies: {
-    'inherits': '2.0.3',
-  },
-  sources: [
-    'plugin/js-minifier.js',
-    'lib/global-paths.js',
-  ]
 });

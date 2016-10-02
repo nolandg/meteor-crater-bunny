@@ -5,8 +5,11 @@
     "lint": "eslint .",
     "pretest": "npm run lint --silent"
   },
-  "dependencies": {},
+  "dependencies": {
+    "inherits": "^2.0.3"
+  },
   "devDependencies": {
+    "inherits": "^2.0.3",
     "babel-eslint": "6.1.2",
     "eslint": "3.5.0",
     "eslint-config-airbnb": "^11.1.0",

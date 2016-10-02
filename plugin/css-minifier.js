@@ -1,6 +1,6 @@
 /* eslint-disable no-var, no-underscore-dangle, vars-on-top, func-names, prefer-arrow-callback */
 var PostCss = require('./juliancwirko_meteor-PostCss');
-var CssStripper = require('../lib/CssStripper');
+var CssStripper = require('./CssStripper');
 var paths = require('../lib/global-paths');
 
 function CssMinifier() {}

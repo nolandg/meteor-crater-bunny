@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign, vars-on-top, no-var, no-underscore-dangle, func-names, prefer-arrow-callback */
 var CssParser = require('css');
-var paths = require('./global-paths');
+var paths = require('../lib/global-paths');
 
 // Remove all unused selectors from an AST CSS rule object
 // Recursive when it finds media queries
