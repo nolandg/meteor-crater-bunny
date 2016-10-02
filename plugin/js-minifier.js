@@ -54,5 +54,5 @@ JsMinifier.prototype.processFilesForBundle = function (files, options) {
     files[0].addJavaScript({ data: allJs });
   }
 
-  paths.saveAsset('scripts', 'js', allJs);
+  paths.saveMinifiedScripts(allJs);
 };

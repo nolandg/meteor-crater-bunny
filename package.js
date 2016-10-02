@@ -12,12 +12,14 @@ Package.onUse((api) => {
   api.use([
     'ecmascript',
     'isobuild:minifier-plugin',
+    'webapp',
   ]);
   api.mainModule('./lib/CrashLanding.js');
 });
 
 Npm.depends({
   css: '2.2.1',
+  'fs-extra': '0.8.1',
 })
 
 Package.onTest((api) => {
@@ -39,7 +41,8 @@ Package.registerBuildPlugin({
     'source-map': '0.5.6',
     'postcss': '5.0.21',
     'app-module-path': '1.0.6',
-    'babel-preset-meteor': '6.12.0'
+    'babel-preset-meteor': '6.12.0',
+    'fs-extra': '0.8.1',
   },
   sources: [
     'plugin/css-minifier.js',
@@ -52,6 +55,9 @@ Package.registerBuildPlugin({
     'ecmascript',
     'minifier-js'
   ],
+  npmDependencies: {
+    'fs-extra': '0.8.1',
+  },
   sources: [
     'plugin/js-minifier.js',
     'lib/global-paths.js',

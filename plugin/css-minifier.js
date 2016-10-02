@@ -47,5 +47,5 @@ CssMinifier.prototype.processFilesForBundle = function (files, options) {
   }
 
   var strippedCss = CssStripper.stripUnused(merged.code);
-  paths.saveAsset('stylesheets', 'css', strippedCss);
+  paths.saveStrippedStylesheet(strippedCss);
 };
