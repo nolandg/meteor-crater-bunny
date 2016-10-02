@@ -1,15 +1,9 @@
 /* eslint-disable no-use-before-define */
 import { Meteor } from 'meteor/meteor';
-import { WebApp } from 'meteor/webapp';
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 
 const paths = require('./global-paths');
-
-WebApp.connectHandlers.use('/noland_crater-bunny/scripts', (req, res, next) => {
-  res.writeHead(200);
-  res.end('Hello world from: ' + Meteor.release);
-});
 
 // A tag to add once to the top level App component.
 // Insert as inline style CSS stripped clean of unused rules (saved by build plugin)
@@ -21,7 +15,7 @@ export default class InlineStrippedCss extends Component {
 
     // Remove all events that might have been attached by user with inlined scripts
     // that ran before the mother ship arrived
-    this.stripAllEventListeners('.event-attached-inline');
+    this.stripAllEventListeners();
 
     if (Meteor.isServer) {
       // Set this.inlineCss to the stripped css that the build plugin saved
@@ -36,13 +30,13 @@ export default class InlineStrippedCss extends Component {
     }
   }
 
-  // Strips all event listeners from an element by replacing it with a clone
-  stripAllEventListeners(selector) {
+  // Strips all event listeners that were added by pre-mothership inline js
+  stripAllEventListeners() {
     if (!Meteor.isClient) {
       return;
     }
 
-    const elements = document.querySelectorAll(selector);
+    const elements = document.querySelectorAll('.bunny-crater-event');
 
     for (let i = 0; i < elements.length; i += 1) {
       const node = elements[i];

@@ -20,6 +20,7 @@ Package.onUse((api) => {
 Npm.depends({
   css: '2.2.1',
   'fs-extra': '0.8.1',
+  'inherits': '2.0.3',
 })
 
 Package.onTest((api) => {
@@ -56,7 +57,7 @@ Package.registerBuildPlugin({
     'minifier-js'
   ],
   npmDependencies: {
-    'fs-extra': '0.8.1',
+    'inherits': '2.0.3',
   },
   sources: [
     'plugin/js-minifier.js',

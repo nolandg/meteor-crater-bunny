@@ -1,7 +1,7 @@
 /* eslint-disable no-var, no-undef, new-cap, no-underscore-dangle, func-names, vars-on-top, prefer-arrow-callback */
 // This is a near clone of meteor/packages/standard-minifier-js/plugin/minify-js.js
 // https://github.com/meteor/meteor/blob/devel/packages/standard-minifier-js/plugin/minify-js.js
-var paths = require('../lib/global-paths');
+// var paths = require('../lib/global-paths');
 
 function JsMinifier() {}
 
@@ -54,5 +54,5 @@ JsMinifier.prototype.processFilesForBundle = function (files, options) {
     files[0].addJavaScript({ data: allJs });
   }
 
-  paths.saveMinifiedScripts(allJs);
+  // paths.saveMinifiedScripts(allJs);
 };
