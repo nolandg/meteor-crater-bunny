@@ -13,24 +13,29 @@ export default class InlineStrippedCss extends Component {
   constructor(props) {
     super(props);
 
-    // Remove all events that might have been attached by user with inlined scripts
-    // that ran before the mother ship arrived
     this.stripAllEventListeners();
+    this.inlineCss = this.getInlineCss();
+  }
 
+  getInlineCss() {
+    let inlineCss = '';
     if (Meteor.isServer) {
       // Set this.inlineCss to the stripped css that the build plugin saved
-      this.inlineCss = paths.getStrippedCss(this.props.appAssets);
+      inlineCss = paths.getStrippedCss(this.props.appAssets);
     } else {
       // or on the client, grab the css from the style tag set on the server
       // but this doesn't seem to work, the tag is already destroyed...by helmet?
       // React doesn't seem to mind though and this doesn't trigger a re-render
-      const inlineStyleElement = document.querySelector('style.crash-landing');
-      if (inlineStyleElement) this.inlineCss = inlineStyleElement.innerHtml;
-      else this.inlineCss = '';
+      const inlineStyleElement = document.querySelector('style.crater-bunny');
+      if (inlineStyleElement) {
+        inlineCss = inlineStyleElement.innerHtml;
+      }
     }
+    return inlineCss;
   }
 
-  // Strips all event listeners that were added by pre-mothership inline js
+  // Remove all events that might have been attached by user with inlined scripts
+  // that ran before the mother ship arrived
   stripAllEventListeners() {
     if (!Meteor.isClient) {
       return;
@@ -51,7 +56,7 @@ export default class InlineStrippedCss extends Component {
         <Helmet
           style={[{
             cssText: this.inlineCss,
-            class: 'crash-landing',
+            class: 'crater-bunny',
           }]}
         />
         <Helmet
@@ -108,5 +113,11 @@ Element.prototype.toggleClass = function (className) {
         this.className += ' ' + className;
     }
     return this;
+};
+
+var forEach = function (array, callback, scope) {
+  for (var i = 0; i < array.length; i++) {
+    callback.call(scope, i, array[i]);
+  }
 };
 `;

@@ -1,15 +1,13 @@
 {
-  "name": "noland_crash-landing",
+  "name": "noland_crater-bunny",
   "private": true,
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint --silent"
   },
   "dependencies": {
-    "inherits": "^2.0.3"
   },
   "devDependencies": {
-    "inherits": "^2.0.3",
     "babel-eslint": "6.1.2",
     "eslint": "3.5.0",
     "eslint-config-airbnb": "^11.1.0",
