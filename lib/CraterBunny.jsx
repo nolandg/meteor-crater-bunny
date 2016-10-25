@@ -81,7 +81,6 @@ var BunnyCraterEventElements = [];
 Element.prototype.addBunnyCraterEventListener = function (eventName, handler) {
   this.addEventListener(eventName, handler);
   BunnyCraterEventElements.push(this);
-  // this.addClass('bunny-crater-event');
 }
 
 Element.prototype.hasClass = function (className) {
