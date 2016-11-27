@@ -7,7 +7,7 @@ Package.describe({
   documentation: 'README.md',
 });
 
-Package.onUse((api) => {
+Package.onUse(function(api){
   api.versionsFrom('1.4.1.1');
   api.use([
     'ecmascript',
@@ -15,13 +15,6 @@ Package.onUse((api) => {
     'webapp',
   ]);
   api.mainModule('./lib/crater-bunny.js');
-});
-
-Package.onTest((api) => {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('noland:crater-bunny');
-  api.mainModule('crater-bunny-tests.js');
 });
 
 Package.registerBuildPlugin({
