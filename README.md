@@ -24,7 +24,7 @@ and completely eliminate any hope of inlining critical above-the-fold CSS the wa
 
 This package automatically removes all unused CSS selectors, rules, and media queries from your final
 aggregated and minimized CSS file. You supply the list of unused selectors by copying and pasting the list
-from such wonderful tools as Chrome --> Dev Tools --> Audits --> Unused CSS Rules.
+from such wonderful tools as Chrome Dev Tools --> Audits --> Unused CSS Rules.
 You might start with 200kB of CSS but in production, the client will only be served the CSS you actually use, maybe 10kB.
 
 As your UI changes you might need to occasionally update the 'unused' list with another copy-paste from the CSS tool.
@@ -94,7 +94,7 @@ manually because it overrides Meteor's core `boilerplate-generator` package.
     - my-meteor-app/private/noland_crater-bunny/unused-css-selectors.txt
     - my-meteor-app/private/noland_crater-bunny/.lib/  
     (PR to auto-generate these anyone?)  
-1. Set an environment variable `METEOR_PACKAGE_DIRS` to a directory where you'll put the package
+1. Set an environment variable `METEOR_PACKAGE_DIRS` to a directory
 1. Download and unzip the [`boilerplate-generator`](http://google.com) core override package to the directory above
 
 # Usage
@@ -134,7 +134,7 @@ App.propTypes = {
   children: React.PropTypes.node,
 };
 ````
-Write some script that needs to be available instantly into `my-meteor-app/private/noland_crater-bunny/inline.js`  
+Write some script that needs to be available instantly into `my-meteor-app/private/noland_crater-bunny/inline.js`:
 ````js
 document.addEventListener('DOMContentLoaded', function () {
   var navicon = document.getElementById('main-menu-navicon');
@@ -148,3 +148,26 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 ````
+Copy-paste a list of unused CSS rules from a tool like Chrome Dev Tools (Audits --> Unused CSS rules) into
+`my-meteor-app/private/noland_crater-bunny/unused-css-selectors.txt`. These can be one per line
+or separated by a comma:
+````
+p:first-child
+audio, canvas, progress, video
+audio:not([controls])
+.ui.menu:not(.vertical) .item > .input
+.ui.menu .item > .input input
+````
+Launch your app in production mode:
+`meteor --production`
+View the page source and ensure that the mothership script tag is async, your CSS is
+inline and doesn't include any unused rules, and your inline script runs.
+
+# Next Steps
+The packages work great for me in production now and I'm happy to take PRs and/or fix
+bugs that are well reported.
+
+**To Do:**
+- Clean out legacy code from `global-paths`
+- Auto-generate required files and directories if not existing
+- Get MDG to modify `boilerplate-generator` to avoid needing the override
