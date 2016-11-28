@@ -32,9 +32,10 @@ As your UI changes you might need to occasionally update the 'unused' list with 
 and [autoprefixer](https://github.com/postcss/autoprefixer)?**
 
 Yes! The "normal" Meteor workflow seems to be using [juliancwirko:postcss](https://atmospherejs.com/juliancwirko/postcss)
-for these things and that works great with these packages.
+for these things and (because this package needs to be the CSS minifier) it provides the same functionality as `juliancwirko:postcss`.
 
 **But will my icon font still work? Even with embedded octet streams?**
+
 Yes! But don't use a full icon font if you want to inline it because that would be huge.
 Use an excellent service like [Fontello](http://fontello.com/) to build a custom iconic font
 with only the icons you actually use and embed that.
@@ -72,6 +73,7 @@ This packages also provides a few simple utility functions like `addClass()`, `r
 to make life easier with jQuery.
 
 **But won't those extra events mess with the events my Meteor app will attach later?**
+
 No. This package also provides a safe event attachment method that will track all the events you attach
 and when the mothership script arrives, all your events will be removed to avoid any conflicts or double actions.
 
@@ -84,5 +86,69 @@ These give you an awesome SSR app and full control over your `<head>` tags for S
 
 # Installation
 This `crater-bunny` package can be installed via [Atmosphere](https://atmospherejs.com/).
-The required `boilerplate-generator` package must be installed
+but the required `boilerplate-generator` package must be installed
 manually because it overrides Meteor's default `boilerplate-generator` package.
+
+**Install `crater-bunny`**
+
+1. `meteor add noland:crater-bunny`
+1. Create a directory structure and files like so:
+    - my-meteor-app/private/noland_crater-bunny/unused-css-selectors.txt
+    - my-meteor-app/private/noland_crater-bunny/.lib/
+    (PR to auto-generate these anyone?)
+
+**Install `boilerplate-generator`**
+1. Set an environment variable `METEOR_PACKAGE_DIRS` to a directory where you'll put the package
+1. Download and unzip the [`boilerplate-generator`](http://google.com) core override package to the directory above
+
+# Usage
+1. Add the React component to your top-level app component:
+````jsx
+import { Meteor } from 'meteor/meteor';
+import React, { Component } from 'react';
+import Helmet from 'react-helmet';
+import { CraterBunny } from 'meteor/noland:crater-bunny';
+
+export default class App extends Component {
+  render() {
+    // We need to pass a handle to our Assets to the <CraterBunny> component
+    const appAssets = Meteor.isServer ? Assets : null;
+
+    return (
+      <div>
+        <CraterBunny appAssets={appAssets} />
+        <Helmet
+          meta={[
+            { charset: 'UTF-8' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+          ]}
+          script={[
+            // External, non-inlinable scripts could go here, preferably async true
+            { type: 'text/javascript', src: 'https://js.stripe.com/v2/', async: 'true' },
+          ]}
+        />
+        {this.props.children}
+      </div>
+    );
+  }
+
+}
+
+App.propTypes = {
+  children: React.PropTypes.node,
+};
+````
+1. Write some script that needs to be available instantly into `my-meteor-app/private/noland_crater-bunny/inline.js`
+````js
+document.addEventListener('DOMContentLoaded', function () {
+  var navicon = document.getElementById('main-menu-navicon');
+
+  if (navicon) {
+    // Use the safe event listener function so this event will be automatically 
+    // removed later to avoid conflicts with the Meteor app
+    navicon.addCraterBunnyEventListener('click', function(){
+      console.log('Navicon was clicked');
+    });
+  }
+});
+````

@@ -5,10 +5,10 @@ import Helmet from 'react-helmet';
 
 const paths = require('./global-paths');
 
-// A tag to add once to the top level App component.
-// Insert as inline style CSS stripped clean of unused rules (saved by build plugin)
+// A component to add once to the top level App component.
+//
+// Insert inline CSS stripped clean of unused rules (saved by build plugin)
 // Insert user's inline script
-// Load the Meteor script mothership as async
 export default class InlineStrippedCss extends Component {
   constructor(props) {
     super(props);
@@ -35,14 +35,13 @@ export default class InlineStrippedCss extends Component {
   }
 
   // Remove all events that might have been attached by user with inlined scripts
-  // that ran before the mother ship arrived
+  // that ran before the mothership arrived
   stripAllEventListeners() {
     if (!Meteor.isClient) {
       return;
     }
 
-    // const elements = document.querySelectorAll('.bunny-crater-event');
-    const elements = CraterBunnyEventElements;
+    const elements = CraterBunnyEventElements; // this is defined in the inlined script
 
     for (let i = 0; i < elements.length; i += 1) {
       const node = elements[i];
