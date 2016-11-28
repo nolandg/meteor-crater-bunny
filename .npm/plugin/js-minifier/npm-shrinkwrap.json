@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "inherits": {
-      "version": "2.0.3",
-      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
-      "from": "inherits@2.0.3"
-    }
-  }
-}

@@ -1,7 +1,7 @@
 /* eslint-disable */
 Package.describe({
   name: 'noland:crater-bunny',
-  version: '0.1.2',
+  version: '0.1.4',
   summary: 'Make landing pages super fast with SSR, async, inline, and auto-cleaned CSS',
   git: 'https://github.com/nolandg/meteor-crater-bunny',
   documentation: 'README.md',

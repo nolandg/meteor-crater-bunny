@@ -6,9 +6,10 @@ Meteor rocks for building apps and web apps but it's initial (empty cache) page 
 are way too slow to make landing pages.
 Slow landing pages lose customers, increase your AdWords costs, and make bunnies cry.
 Building landing pages separately from your Meteor app requires re-writing CSS, templates, scripts, etc.
-These two packages fix that by making your Meteor app land super fast, like a bunny.
+These [two packages](https://github.com/nolandg/meteor-boilerplate-generator)
+fix that by making your Meteor app land super fast, like a bunny.
 
-(currently only for [React](https://facebook.github.io/react/)-based apps and not well polished. I'm open to PRs though...)
+(currently only for [React](https://facebook.github.io/react/)-based apps and not well-polished. I'm open to PRs though...)
 
 # What the packages do
 - Removes all unused CSS selectors, rules, and media queries (use a CSS framework without penalty!)
@@ -19,17 +20,16 @@ See below for more details on each of these points.
 
 ## Removing unused CSS
 Normally, using a CSS framework like [Semantic](http://semantic-ui.com/) or [Bootstrap](http://getbootstrap.com/)
-meant that your app was doomed to carry 1,000s (or 10,000s) of unused CSS lines and reduce performance
-and completely eliminate any hope of inlining critical above-the-fold CSS the way Google likes it.
+meant that your app was doomed to carry 1,000s of unused CSS lines with poor performance
+and eliminate any hope of inlining critical above-the-fold CSS the way Google likes it.
 
 This package automatically removes all unused CSS selectors, rules, and media queries from your final
 aggregated and minimized CSS file. You supply the list of unused selectors by copying and pasting the list
 from such wonderful tools as Chrome Dev Tools --> Audits --> Unused CSS Rules.
-You might start with 200kB of CSS but in production, the client will only be served the CSS you actually use, maybe 10kB.
 
 As your UI changes you might need to occasionally update the 'unused' list with another copy-paste from the CSS tool.
 
-**What if my unused CSS tool makes a mistake and the app actually does use an obscure rule?**  
+##### What if my unused CSS tool makes a mistake and the app actually does use an obscure rule?
 The missing rule will only be missing for a few seconds. The full CSS file is loaded
 asynchronously in the background and replaces the inline CSS as soon as it arrives.
 
@@ -74,7 +74,7 @@ that would really suck if your user had to wait 4 seconds for the mothership to 
 This package inlines a single user-supplied script file into the initial request. This is where you can
 attach a few events and define some simple behaviours your user might need in the first few seconds.
 This packages also provides a few simple utility functions like `addClass()`, `removeClass()`, and `toggleClass()`
-to make life easier with jQuery.
+to make life easier without jQuery.
 
 **But won't those extra events mess with the events my Meteor app will attach later?**  
 No. This package also provides a safe event attachment method that will track all the events you attach
