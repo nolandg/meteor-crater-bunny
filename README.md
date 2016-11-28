@@ -80,27 +80,25 @@ and when the mothership script arrives, all your events will be removed to avoid
 This packages currently requires React-based server-side-rendering using these packages:
 - [`react-router`](https://github.com/ReactTraining/react-router)
 - [`react-router-ssr`](https://github.com/thereactivestack-legacy/meteor-react-router-ssr)
-- [`react-helmet`](https://github.com/nfl/react-helmet)  
+- [`react-helmet`](https://github.com/nfl/react-helmet)
+
 These give you an awesome SSR app and full control over your `<head>` tags for SEO.
 
 # Installation
-This `crater-bunny` package can be installed via [Atmosphere](https://atmospherejs.com/).
+This `crater-bunny` package can be installed via [Atmosphere](https://atmospherejs.com/)
 but the required `boilerplate-generator` package must be installed
-manually because it overrides Meteor's default `boilerplate-generator` package.
+manually because it overrides Meteor's core `boilerplate-generator` package.
 
-**Install `crater-bunny`**  
 1. `meteor add noland:crater-bunny`
 1. Create a directory structure and files like so:
     - my-meteor-app/private/noland_crater-bunny/unused-css-selectors.txt
     - my-meteor-app/private/noland_crater-bunny/.lib/  
-    (PR to auto-generate these anyone?)
-
-**Install `boilerplate-generator`**  
+    (PR to auto-generate these anyone?)  
 1. Set an environment variable `METEOR_PACKAGE_DIRS` to a directory where you'll put the package
 1. Download and unzip the [`boilerplate-generator`](http://google.com) core override package to the directory above
 
 # Usage
-1. Add the React component to your top-level app component:  
+Add the React component to your top-level app component:  
 ````jsx
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
@@ -136,7 +134,7 @@ App.propTypes = {
   children: React.PropTypes.node,
 };
 ````
-1. Write some script that needs to be available instantly into `my-meteor-app/private/noland_crater-bunny/inline.js`  
+Write some script that needs to be available instantly into `my-meteor-app/private/noland_crater-bunny/inline.js`  
 ````js
 document.addEventListener('DOMContentLoaded', function () {
   var navicon = document.getElementById('main-menu-navicon');
