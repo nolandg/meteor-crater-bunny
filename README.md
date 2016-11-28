@@ -29,6 +29,10 @@ You might start with 200kB of CSS but in production, the client will only be ser
 
 As your UI changes you might need to occasionally update the 'unused' list with another copy-paste from the CSS tool.
 
+**What if my unused CSS tool makes a mistake and the app actually does use an obscure rule?**  
+The missing rule will only be missing for a few seconds. The full CSS file is loaded
+asynchronously in the background and replaces the inline CSS as soon as it arrives.
+
 **Can I still use awesome tools in the CSS build chain like [SASS](http://sass-lang.com/)
 and [autoprefixer](https://github.com/postcss/autoprefixer)?**  
 Yes! The "normal" Meteor workflow seems to be using [juliancwirko:postcss](https://atmospherejs.com/juliancwirko/postcss)
@@ -159,7 +163,9 @@ audio:not([controls])
 .ui.menu .item > .input input
 ````
 Launch your app in production mode:
-`meteor --production`
+````
+meteor --production
+````
 View the page source and ensure that the mothership script tag is async, your CSS is
 inline and doesn't include any unused rules, and your inline script runs.
 

@@ -1,9 +1,9 @@
 /* eslint-disable */
 Package.describe({
   name: 'noland:crater-bunny',
-  version: '0.0.1',
-  summary: 'Makes landing pages bunny-fast by inlining critical CSS and Javascript.',
-  git: '',
+  version: '0.1.2',
+  summary: 'Make landing pages super fast with SSR, async, inline, and auto-cleaned CSS',
+  git: 'https://github.com/nolandg/meteor-crater-bunny',
   documentation: 'README.md',
 });
 
@@ -11,7 +11,7 @@ Package.onUse(function(api){
   api.versionsFrom('1.4.1.1');
   api.use([
     'ecmascript',
-    'isobuild:minifier-plugin',
+    'isobuild:minifier-plugin@1.0.0',
     'webapp',
   ]);
   api.mainModule('./lib/crater-bunny.js');
@@ -21,7 +21,7 @@ Package.registerBuildPlugin({
   name: 'css-minifier',
   use: [
     'ecmascript',
-    'minifier-css',
+    'minifier-css@1.0.0',
   ],
   npmDependencies: {
     'css': '2.2.1',
