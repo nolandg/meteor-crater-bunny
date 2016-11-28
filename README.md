@@ -8,6 +8,8 @@ Slow landing pages lose customers, increase your AdWords costs, and make bunnies
 Building landing pages separately from your Meteor app requires re-writing CSS, templates, scripts, etc.
 These two packages fix that by making your Meteor app land super fast, like a bunny.
 
+(currently only for [React](https://facebook.github.io/react/)-based apps and not well polished. I'm open to PRs though...)
+
 # What the packages do
 - Removes all unused CSS selectors, rules, and media queries (use a CSS framework without penalty!)
 - Inlines the lean CSS with the initial HTML delivery
@@ -28,8 +30,16 @@ As your UI changes you might need to occasionally update the 'unused' list with 
 
 **Can I still use awesome tools in the CSS build chain like [SASS](http://sass-lang.com/)
 and [autoprefixer](https://github.com/postcss/autoprefixer)?**
+
 Yes! The "normal" Meteor workflow seems to be using [juliancwirko:postcss](https://atmospherejs.com/juliancwirko/postcss)
 for these things and that works great with these packages.
+
+**But will my icon font still work? Even with embedded octet streams?**
+Yes! But don't use a full icon font if you want to inline it because that would be huge.
+Use an excellent service like [Fontello](http://fontello.com/) to build a custom iconic font
+with only the icons you actually use and embed that.
+
+And yes, you can inline a few icons with the initial HTML delivery and your page will render immediately with the pretty icons.
 
 ## Inlining the lean CSS
 Now that you have a very lean CSS files, why force your user to do another request for it?
@@ -50,13 +60,29 @@ the script files still load synchronously and tools like [Google PageSpeed](http
 perceive your page's performance as very poor.
 
 This repo provides a replacement `boilerplate-generator` package that asynchronously loads the mothership script file in production mode.
+Thus your page renders immediately and a few seconds later it transparently becomes a fully functional Meteor web app.
 
-##
+## But I need a few small script functions right away!
+Often, your UI will have a few features that require script to be functional--like menus or "Subscribe Now!" buttons
+that would really suck if your user had to wait 4 seconds for the mothership to arrive before they become functional.
+
+This package inlines a single user-supplied script file into the initial request. This is where you can
+attach a few events and define some simple behaviours your user might need in the first few seconds.
+This packages also provides a few simple utility functions like `addClass()`, `removeClass()`, and `toggleClass()`
+to make life easier with jQuery.
+
+**But won't those extra events mess with the events my Meteor app will attach later?**
+No. This package also provides a safe event attachment method that will track all the events you attach
+and when the mothership script arrives, all your events will be removed to avoid any conflicts or double actions.
+
+# Requirements
+This packages currently requires React-based server-side-rendering using these packages:
+- [`react-router`](https://github.com/ReactTraining/react-router)
+- [`react-router-ssr`](https://github.com/thereactivestack-legacy/meteor-react-router-ssr)
+- [`react-helmet`](https://github.com/nfl/react-helmet)
+These give you an awesome SSR app and full control over your `<head>` tags for SEO.
 
 # Installation
-This `crater-bunny` package can be installed via [Atmosphere](https://atmospherejs.com/) and the required `boilerplate-generator` package must be installed
-manually because it must override Meteor's default `boilerplate-generator` package.
-
-
-
-# What these packages provide
+This `crater-bunny` package can be installed via [Atmosphere](https://atmospherejs.com/).
+The required `boilerplate-generator` package must be installed
+manually because it overrides Meteor's default `boilerplate-generator` package.

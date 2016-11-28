@@ -42,7 +42,7 @@ export default class InlineStrippedCss extends Component {
     }
 
     // const elements = document.querySelectorAll('.bunny-crater-event');
-    const elements = BunnyCraterEventElements;
+    const elements = CraterBunnyEventElements;
 
     for (let i = 0; i < elements.length; i += 1) {
       const node = elements[i];
@@ -76,11 +76,11 @@ InlineStrippedCss.propTypes = {
 };
 
 const inlineJsHelpersString = `
-var BunnyCraterEventElements = [];
+var CraterBunnyEventElements = [];
 
-Element.prototype.addBunnyCraterEventListener = function (eventName, handler) {
+Element.prototype.addCraterBunnyEventListener = function (eventName, handler) {
   this.addEventListener(eventName, handler);
-  BunnyCraterEventElements.push(this);
+  CraterBunnyEventElements.push(this);
 }
 
 Element.prototype.hasClass = function (className) {
