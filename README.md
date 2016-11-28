@@ -24,13 +24,13 @@ and completely eliminate any hope of inlining critical above-the-fold CSS the wa
 
 This package automatically removes all unused CSS selectors, rules, and media queries from your final
 aggregated and minimized CSS file. You supply the list of unused selectors by copying and pasting the list
-from such wonderful tools as Chrome --> Dev Tools --> Audits --> Used CSS Rules.
+from such wonderful tools as Chrome --> Dev Tools --> Audits --> Unused CSS Rules.
 You might start with 200kB of CSS but in production, the client will only be served the CSS you actually use, maybe 10kB.
+
 As your UI changes you might need to occasionally update the 'unused' list with another copy-paste from the CSS tool.
 
 **Can I still use awesome tools in the CSS build chain like [SASS](http://sass-lang.com/)
-and [autoprefixer](https://github.com/postcss/autoprefixer)?**
-
+and [autoprefixer](https://github.com/postcss/autoprefixer)?**  
 Yes! The "normal" Meteor workflow seems to be using [juliancwirko:postcss](https://atmospherejs.com/juliancwirko/postcss)
 for these things and (because this package needs to be the CSS minifier) it provides the same functionality as `juliancwirko:postcss`.
 
@@ -40,7 +40,8 @@ Yes! But don't use a full icon font if you want to inline it because that would 
 Use an excellent service like [Fontello](http://fontello.com/) to build a custom iconic font
 with only the icons you actually use and embed that.
 
-And yes, you can inline a few icons with the initial HTML delivery and your page will render immediately with the pretty icons.
+And yes, you can inline a few icons with the initial HTML delivery and your page will render immediately with the pretty
+icons--no flash of weird unsupported symbols.
 
 ## Inlining the lean CSS
 Now that you have a very lean CSS files, why force your user to do another request for it?
@@ -94,7 +95,7 @@ manually because it overrides Meteor's default `boilerplate-generator` package.
 1. `meteor add noland:crater-bunny`
 1. Create a directory structure and files like so:
     - my-meteor-app/private/noland_crater-bunny/unused-css-selectors.txt
-    - my-meteor-app/private/noland_crater-bunny/.lib/
+    - my-meteor-app/private/noland_crater-bunny/.lib/  
     (PR to auto-generate these anyone?)
 
 **Install `boilerplate-generator`**
@@ -144,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var navicon = document.getElementById('main-menu-navicon');
 
   if (navicon) {
-    // Use the safe event listener function so this event will be automatically 
+    // Use the safe event listener function so this event will be automatically
     // removed later to avoid conflicts with the Meteor app
     navicon.addCraterBunnyEventListener('click', function(){
       console.log('Navicon was clicked');
