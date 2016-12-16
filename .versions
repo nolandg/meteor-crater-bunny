@@ -20,7 +20,7 @@ minifier-css@1.1.13
 modules@0.7.6_1
 modules-runtime@0.7.6_1
 mongo-id@1.0.5
-noland:crater-bunny@0.1.7
+noland:crater-bunny@0.1.8
 observe-sequence@1.0.12
 promise@0.8.7
 random@1.0.10
