@@ -43,6 +43,14 @@ function filterRule(rule) {
     // and only keep it if it still has rules
     return mediaQuery.rules.length;
   }
+  if (rule.type === 'font-face') {
+    // Look for a white-listed font family to keep
+    var keep = false;
+    rule.declarations.forEach(function (dec) {
+      if (dec.value.indexOf('fontello') !== -1) keep = true;
+    });
+    return keep;
+  }
   return true; // keep anything else?
 }
 
@@ -66,7 +74,7 @@ function stripUnused(cssInputString, unusedSelectorsInputString) {
   css.stylesheet.rules = css.stylesheet.rules.filter(filterRule);
 
   // Prepare output string
-  strippedCssString = CssParser.stringify(css, { compress: true });
+  strippedCssString = CssParser.stringify(css, { compress: false });
   return strippedCssString;
 }
 

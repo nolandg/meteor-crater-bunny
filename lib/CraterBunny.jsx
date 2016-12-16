@@ -37,7 +37,7 @@ export default class InlineStrippedCss extends Component {
   // Remove all events that might have been attached by user with inlined scripts
   // that ran before the mothership arrived
   stripAllEventListeners() {
-    if (!Meteor.isClient) {
+    if (!Meteor.isClient || (typeof CraterBunnyEventElements === 'undefined')) {
       return;
     }
 

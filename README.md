@@ -29,16 +29,15 @@ from such wonderful tools as Chrome Dev Tools --> Audits --> Unused CSS Rules.
 
 As your UI changes you might need to occasionally update the 'unused' list with another copy-paste from the CSS tool.
 
-##### What if my unused CSS tool makes a mistake and the app actually does use an obscure rule?
+#### What if my unused CSS tool makes a mistake and the app actually does use an obscure rule?
 The missing rule will only be missing for a few seconds. The full CSS file is loaded
 asynchronously in the background and replaces the inline CSS as soon as it arrives.
 
-**Can I still use awesome tools in the CSS build chain like [SASS](http://sass-lang.com/)
-and [autoprefixer](https://github.com/postcss/autoprefixer)?**  
+#### Can I still use awesome tools in the CSS build chain like [SASS](http://sass-lang.com/) and [autoprefixer](https://github.com/postcss/autoprefixer)?
 Yes! The "normal" Meteor workflow seems to be using [juliancwirko:postcss](https://atmospherejs.com/juliancwirko/postcss)
 for these things and (because this package needs to be the CSS minifier) it provides the same functionality as `juliancwirko:postcss`.
 
-**But will my icon font still work? Even with embedded octet streams?**  
+#### But will my icon font still work? Even with embedded octet streams?
 Yes! But don't use a full icon font if you want to inline it because that would be huge.
 Use an excellent service like [Fontello](http://fontello.com/) to build a custom iconic font
 with only the icons you actually use and embed that.
@@ -64,7 +63,8 @@ inflexible [`boilerplate-generator` core package](https://github.com/meteor/mete
 the script files still load synchronously and tools like [Google PageSpeed](https://developers.google.com/speed/pagespeed/insights/)
 perceive your page's performance as very poor.
 
-This repo provides a replacement `boilerplate-generator` package that asynchronously loads the mothership script file in production mode.
+This [`boilerplate-generator` replacement package](https://github.com/nolandg/meteor-boilerplate-generator)
+asynchronously loads the mothership script file in production mode.
 Thus your page renders immediately and a few seconds later it transparently becomes a fully functional Meteor web app.
 
 ## But I need a few small script functions right away!
@@ -76,7 +76,7 @@ attach a few events and define some simple behaviours your user might need in th
 This packages also provides a few simple utility functions like `addClass()`, `removeClass()`, and `toggleClass()`
 to make life easier without jQuery.
 
-**But won't those extra events mess with the events my Meteor app will attach later?**  
+#### But won't those extra events mess with the events my Meteor app will attach later?
 No. This package also provides a safe event attachment method that will track all the events you attach
 and when the mothership script arrives, all your events will be removed to avoid any conflicts or double actions.
 
@@ -98,8 +98,7 @@ manually because it overrides Meteor's core `boilerplate-generator` package.
     - my-meteor-app/private/noland_crater-bunny/unused-css-selectors.txt
     - my-meteor-app/private/noland_crater-bunny/.lib/  
     (PR to auto-generate these anyone?)  
-1. Set an environment variable `METEOR_PACKAGE_DIRS` to a directory
-1. Download and unzip the [`boilerplate-generator`](http://google.com) core override package to the directory above
+1. Follow the [`boilerplate-generator` installation instructions](https://github.com/nolandg/meteor-boilerplate-generator)
 
 # Usage
 Add the React component to your top-level app component:  
@@ -177,3 +176,4 @@ bugs that are well reported.
 - Clean out legacy code from `global-paths`
 - Auto-generate required files and directories if not existing
 - Get MDG to modify `boilerplate-generator` to avoid needing the override
+- Make proper whitelisting functionality to save/remove `@font-face`s from CSS
