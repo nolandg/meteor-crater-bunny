@@ -27,6 +27,7 @@ CssMinifier.prototype.processFilesForBundle = function (files, options) {
 
   merged = PostCss.mergeCss(filesToMerge);
 
+  // Development Minification
   if (options.minifyMode === 'development') {
     files[0].addStylesheet({
       data: merged.code,
@@ -36,7 +37,16 @@ CssMinifier.prototype.processFilesForBundle = function (files, options) {
     return;
   }
 
+  // Production Minification
   minifiedFiles = PostCss.minifyCss(merged.code);
+
+  // Get CSS stripped of unused selectors
+  var strippedCss = CssStripper.stripUnused(merged.code);
+  // Add stripped CSS to styles
+  files[0].addStylesheet({
+    data: strippedCss,
+    path: 'crater-bunny-stripped.css',
+  });
 
   if (files.length) {
     minifiedFiles.forEach(function (minified) {
@@ -45,7 +55,4 @@ CssMinifier.prototype.processFilesForBundle = function (files, options) {
       });
     });
   }
-
-  var strippedCss = CssStripper.stripUnused(merged.code);
-  paths.saveStrippedCss(strippedCss);
 };

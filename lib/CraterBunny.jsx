@@ -14,24 +14,6 @@ export default class InlineStrippedCss extends Component {
     super(props);
 
     this.stripAllEventListeners();
-    this.inlineCss = this.getInlineCss();
-  }
-
-  getInlineCss() {
-    let inlineCss = '';
-    if (Meteor.isServer) {
-      // Set this.inlineCss to the stripped css that the build plugin saved
-      inlineCss = paths.getStrippedCss(this.props.appAssets);
-    } else {
-      // or on the client, grab the css from the style tag set on the server
-      // but this doesn't seem to work, the tag is already destroyed...by helmet?
-      // React doesn't seem to mind though and this doesn't trigger a re-render
-      const inlineStyleElement = document.querySelector('style.crater-bunny');
-      if (inlineStyleElement) {
-        inlineCss = inlineStyleElement.innerHtml;
-      }
-    }
-    return inlineCss;
   }
 
   // Remove all events that might have been attached by user with inlined scripts
@@ -41,7 +23,8 @@ export default class InlineStrippedCss extends Component {
       return;
     }
 
-    const elements = CraterBunnyEventElements; // this is defined in the inlined script
+    // this is defined in the inlined script
+    const elements = CraterBunnyEventElements; // eslint-disable-line no-undef
 
     for (let i = 0; i < elements.length; i += 1) {
       const node = elements[i];
@@ -52,13 +35,7 @@ export default class InlineStrippedCss extends Component {
 
   render() {
     return (
-      <div className="">
-        <Helmet
-          style={[{
-            cssText: this.inlineCss,
-            class: 'crater-bunny',
-          }]}
-        />
+      <div className="crater-bunny">
         <Helmet
           script={[
             { innerHTML: Meteor.isServer ? inlineJsHelpersString : '', type: 'text/javascript' },
