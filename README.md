@@ -96,7 +96,7 @@ manually because it overrides Meteor's core `boilerplate-generator` package.
 1. `meteor add noland:crater-bunny`
 1. Create a directory structure and files like so:
     - my-meteor-app/private/noland_crater-bunny/unused-css-selectors.txt
-    - my-meteor-app/private/noland_crater-bunny/.lib/  
+    - my-meteor-app/private/noland_crater-bunny/lib/  
     (PR to auto-generate these anyone?)  
 1. Follow the [`boilerplate-generator` installation instructions](https://github.com/nolandg/meteor-boilerplate-generator)
 
