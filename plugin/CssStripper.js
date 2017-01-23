@@ -48,6 +48,7 @@ function filterRule(rule) {
     var keep = false;
     rule.declarations.forEach(function (dec) {
       if (dec.value.indexOf('fontello') !== -1) keep = true;
+      else if (dec.value.indexOf('Lato') !== -1) keep = true;
     });
     return keep;
   }
