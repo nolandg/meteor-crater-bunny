@@ -75,7 +75,7 @@ function stripUnused(cssInputString, unusedSelectorsInputString) {
   css.stylesheet.rules = css.stylesheet.rules.filter(filterRule);
 
   // Prepare output string
-  strippedCssString = CssParser.stringify(css, { compress: false });
+  strippedCssString = CssParser.stringify(css, { compress: true });
   return strippedCssString;
 }
 
