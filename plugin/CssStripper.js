@@ -47,8 +47,7 @@ function filterRule(rule) {
     // Look for a white-listed font family to keep
     var keep = false;
     rule.declarations.forEach(function (dec) {
-      if (dec.value.indexOf('fontello') !== -1) keep = true;
-      else if (dec.value.indexOf('Lato') !== -1) keep = true;
+      if(dec.type === 'comment' && dec.comment.indexOf('!---INLINE FONT---!') !== -1) keep = true;
     });
     return keep;
   }

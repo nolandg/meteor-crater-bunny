@@ -47,6 +47,7 @@ CssMinifier.prototype.processFilesForBundle = function (files, options) {
     path: 'crater-bunny-stripped.css',
   });
 
+  // Add rest of CSS files
   if (files.length) {
     minifiedFiles.forEach(function (minified) {
       files[0].addStylesheet({
